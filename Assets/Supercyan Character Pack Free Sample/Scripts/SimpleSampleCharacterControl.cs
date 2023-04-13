@@ -44,17 +44,17 @@ public class SimpleSampleCharacterControl : MonoBehaviour
 
     private List<Collider> m_collisions = new List<Collider>();
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-    private void OnEnable()
-    {
-        UIInputSystem.ME.AddOnTouchEvent(ButtonAction.Jump, ProcessJumping);
-    }
+//#if UNITY_ANDROID && !UNITY_EDITOR
+//    private void OnEnable()
+//    {
+//        UIInputSystem.ME.AddOnTouchEvent(ButtonAction.Jump, ProcessJumping);
+//    }
 
-    private void OnDisable()
-    {
-        UIInputSystem.ME.RemoveOnTouchEvent(ButtonAction.Jump, ProcessJumping);
-    }
-#endif
+//    private void OnDisable()
+//    {
+//        UIInputSystem.ME.RemoveOnTouchEvent(ButtonAction.Jump, ProcessJumping);
+//    }
+//#endif
 
     private void Awake()
     {

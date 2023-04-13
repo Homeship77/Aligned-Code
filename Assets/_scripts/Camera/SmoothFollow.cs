@@ -87,13 +87,8 @@ namespace CameraUtils
             }
         if (Input.touchCount == 2) 
         {
-            GUIManager.Instance.UtilityWindows.ShowZoomPanel();
-            Zoom();
+            //Zoom();
         }
-        else
-            {
-            GUIManager.Instance.UtilityWindows.HideZoomPanel();
-            }
             
         return;
 #endif

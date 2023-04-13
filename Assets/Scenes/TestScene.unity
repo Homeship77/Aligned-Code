@@ -299,7 +299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &90819506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1707,7 +1707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZoomEnabled: 1
   target: {fileID: 1455695208}
-  distance: 8
+  distance: 7
   ZoomSensitivity: 0.25
   scrollSpeed: 1
   ControlledObject: {fileID: 0}
@@ -1716,8 +1716,8 @@ MonoBehaviour:
   rotationDamping: 0
   heightDamping: 1
   distanceDamping: 1
-  MaxDistance: 30
-  MaxHeight: 30
+  MaxDistance: 12
+  MaxHeight: 12
   distanceCurrent: 0
   MinDistance: 0
   MinHeight: 0
