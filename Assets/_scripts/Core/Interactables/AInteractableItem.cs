@@ -1,4 +1,5 @@
 using Core.Player;
+using EventSystems;
 using Interfaces;
 using UnityEngine;
 
@@ -18,10 +19,27 @@ namespace Core
             OnUpdate();
         }
 
-        public abstract void OnStart();
+        void OnEnable()
+        {
+            OnStart();
+        }
 
-        public abstract void Action(PlayerSessionData sessionData);
-        
-        public abstract void OnUpdate();
+        void OnDisable() 
+        { 
+            OnDestroying(); 
+        }
+
+        private void OnDestroy()
+        {
+            OnDestroying();
+        }
+
+        public virtual void OnStart() { EventManager.Subscribe(this); }
+
+        public virtual void OnDestroying() { EventManager.Unsubscribe(this); }
+
+        public virtual void Action(PlayerSessionData sessionData) { }
+
+        public virtual void OnUpdate() { }
     }
 }

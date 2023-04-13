@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using EventSystems;
+using Interfaces;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +18,13 @@ namespace Core.ObjectPool
             ID = id;
         }
     }
-    public class PoolService : IGameEvent
+    public class PoolService : IGameEffectEvent
     {
         public event Action<float> OnUpdateEvent;
 
-        Dictionary<string, List<GameObject>> _pool;
-        List<SActiveObject> _activeObjects;
-
+        private Dictionary<string, List<GameObject>> _pool;
+        private List<SActiveObject> _activeObjects;
+        private Transform _parent;
 
         public void AddEffect(string effectID, Vector3 startPos, Vector3 endPos, Action callback = null)
         {
@@ -35,6 +36,10 @@ namespace Core.ObjectPool
                     var go = value[0];
                     value.RemoveAt(0);
 
+                    if (_parent != null)
+                    {
+                        go.transform.SetParent(_parent);
+                    }
                     go.SetActive(true);
                     go.transform.position = startPos;
                     var effectCtrl = go.GetComponent<EffectController>();
@@ -53,17 +58,26 @@ namespace Core.ObjectPool
 
                 }
             }
-            throw new Exception("There is no " + effectID + " object in the pool");
+            else
+            {
+                if (callback != null)
+                {
+                    callback.Invoke();
+                }
+            }
+            //throw new Exception("There is no " + effectID + " object in the pool");
         }
 
-        public PoolService(GameObjectStore assetStore)
+        public PoolService(GameObjectStore assetStore, Transform parent)
         {
+            _parent = parent;
             _pool = new Dictionary<string, List<GameObject>>();
             _activeObjects = new List<SActiveObject>();
             foreach (var item in assetStore.ItemListData)
             {
                 InitObjectTypeInPool(item);
             }
+            EventManager.Subscribe(this);
         }
 
         public void OnUpdate()
@@ -78,6 +92,7 @@ namespace Core.ObjectPool
             { 
                 if (!_activeObjects[counter].Item.activeSelf)
                 {
+                    EventManager.RaiseEvent<IGameEvent>(handler => handler.ObjectReturningToPool(_activeObjects[counter].Item.transform.position));
                     _pool[_activeObjects[counter].ID].Add(_activeObjects[counter].Item);
                     _activeObjects.RemoveAt(counter);
                 }

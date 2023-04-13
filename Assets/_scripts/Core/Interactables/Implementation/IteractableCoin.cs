@@ -1,7 +1,6 @@
 ﻿using Core.Player;
 using EventSystems;
 using Interfaces;
-using System;
 
 namespace Core.Interactables
 {
@@ -11,25 +10,10 @@ namespace Core.Interactables
 
         public override ETakeableType TakeableType => ETakeableType.ett_coin;
 
-        public override void Action(PlayerSessionData _sessionData)
+        public override void Action(PlayerSessionData sessionData)
         {
-            EventManager.RaiseEvent<IGameEvent>(handler => handler.AddEffect( TakeEffectID, transform.position, _sessionData.PlayerPosition, ()=> { _sessionData.ChangeCoinsValue(); }));
-            
-        }
-
-        public override void OnDestroying()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnStart()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnUpdate()
-        {
-            throw new NotImplementedException();
+            EventManager.RaiseEvent<IGameEffectEvent>(handler => handler.AddEffect( TakeEffectID, transform.position, sessionData.PlayerPosition, ()=> { EventManager.RaiseEvent<IGameEvent>(handler => handler.ProcessEvent(InteractableType, 1)); }));
+            gameObject.SetActive(false);
         }
     }
 }

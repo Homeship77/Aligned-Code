@@ -10,5 +10,6 @@ namespace Core
         eit_endurance = 4,
         eit_base = 5,
         eit_damageZone = 6,
+        eit_upgrade = 7,
     }
 }

@@ -1,13 +1,14 @@
 ﻿using Core;
-using System;
 using UnityEngine;
 
 namespace Interfaces
 {
-    public interface IGameEvent: IGlobalSubscriber
+    public interface IGameEvent : IGlobalSubscriber
     {
-        void AddEffect(string effectID, Vector3 startPos, Vector3 endPos, Action callback = null);
+        void ProcessEvent(EInteractableType eventType, int value);
 
-        event Action<float> OnUpdateEvent;
+        void CriticalEvent(EEventType eventType);
+
+        void ObjectReturningToPool(Vector3 objPosition);
     }
 }

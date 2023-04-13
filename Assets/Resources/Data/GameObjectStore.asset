@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972bd908340dc6d4492a9298124d70a6, type: 3}
+  m_Name: GameObjectStore
+  m_EditorClassIdentifier: 
+  ItemListData:
+  - ID: coin
+    Prefab: {fileID: 1000011365394840, guid: 5142a683d65bbf84abea6f07db9099c7, type: 3}
+    PoolCount: 50
+    SingleInstance: 0
+    Takeable: 1
+  - ID: heal
+    Prefab: {fileID: 1000012970591572, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
+    PoolCount: 50
+    SingleInstance: 0
+    Takeable: 1
+  - ID: geyzer
+    Prefab: {fileID: 8621429400075628953, guid: 21741115f99528548b7dc302d8916243,
+      type: 3}
+    PoolCount: 35
+    SingleInstance: 0
+    Takeable: 0
+  - ID: base
+    Prefab: {fileID: 2930332572023633174, guid: 4f968a21f13aee94997cb7cc1a159a0a,
+      type: 3}
+    PoolCount: 1
+    SingleInstance: 1
+    Takeable: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013555364002}
   - component: {fileID: 4369141469825336876}
+  - component: {fileID: -7810444016169039269}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1000011365394840}
   m_LocalRotation: {x: -0, y: 0.49642566, z: -0, w: 0.8680793}
   m_LocalPosition: {x: 2.161, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4000010444600384}
@@ -45,7 +46,20 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.35
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-7810444016169039269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011365394840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d39e38547320447a7b9583b16331e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeEffectID: PickupCoin
 --- !u!1 &1000013760068644
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013760068644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

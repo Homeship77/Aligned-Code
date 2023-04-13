@@ -20,14 +20,9 @@ namespace Core.ObjectPool
             _action = callback;
         }
 
-        private void Start()
+        private void OnParticleSystemStopped()
         {
-                
-        }
-
-        private void Update()
-        {
-            
+            gameObject.SetActive(false);
         }
     }
 }
