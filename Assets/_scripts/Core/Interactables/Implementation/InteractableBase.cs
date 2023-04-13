@@ -65,13 +65,12 @@ namespace Core.Interactables
         private void HighUpgrade() 
         {
             _highUpgrades++;
-            var mult = _coinsToHighUpgrade / _coinsToLowUpgrade;
 
             if (_highGradePrefab != null)
             {
                 var go = Instantiate(_highGradePrefab, transform);
                 go.transform.localPosition = Vector3.zero;
-                go.transform.localRotation = Quaternion.AngleAxis(_highUpgrades / mult * 10f, Vector3.up);
+                go.transform.localRotation = Quaternion.AngleAxis(_highUpgrades * 10f, Vector3.up);
             }
 
            EventManager.RaiseEvent<IGameEvent>(handler => handler.ProcessEvent(EInteractableType.eit_upgrade, 1));

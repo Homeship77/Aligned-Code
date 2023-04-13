@@ -61,8 +61,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lowUprgadeTarget: {fileID: 2081611852522835373}
-  _coinsToLowUpgrade: 5
-  _coinsToHighUpgrade: 25
+  _coinsToLowUpgrade: 3
+  _coinsToHighUpgrade: 15
   _highGradePrefab: {fileID: 1125100372415784578, guid: a3ae120bc66590a49be0a9dc1ac58d23,
     type: 3}
   _spetCoinsEffect: SpentCoins
