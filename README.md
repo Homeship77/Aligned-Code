@@ -1,3 +1,3 @@
 # Aligned-Code
-Ligned Code test work
+ALigned Code test work
 https://youtu.be/BOUH7OnNz8o - геймплей
