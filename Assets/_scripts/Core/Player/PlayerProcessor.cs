@@ -21,6 +21,8 @@ namespace Core.Player
         [SerializeField]
         private Transform _levelBase;
 
+        private LayerMask _layerMask;
+
         private List<Collider> _collisions = new List<Collider>();
 
         private PlayerSessionData _sessionData;
@@ -28,6 +30,7 @@ namespace Core.Player
         private LevelGenerator _levelProcessor;
         private float _coolDownTimer = 0f;
         private const float DAMAGE_COOLDOWN = 1.75f;
+        private CapsuleCollider _capsuleCollider;
 
         // Start is called before the first frame update
         private void Start()
@@ -36,6 +39,8 @@ namespace Core.Player
             _effectService = new PoolService(_store, null);
             Vector2 levelSize = new Vector2(_levelBase.localScale.x * 5, _levelBase.localScale.z * 5) * 0.9f;
             _levelProcessor = new LevelGenerator(_levelBase, _maxTakeable, _maxTreates, levelSize, _store);
+            _capsuleCollider = GetComponent<CapsuleCollider>();
+            _layerMask = _levelBase.gameObject.layer;
             EventManager.Subscribe(this);
         }
 
@@ -51,6 +56,8 @@ namespace Core.Player
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (collision.gameObject.layer == _layerMask)
+                return;
             ContactPoint[] contactPoints = collision.contacts;
             for (int i = 0; i < contactPoints.Length; i++)
             {
@@ -63,25 +70,32 @@ namespace Core.Player
 
         private void OnCollisionStay(Collision collision)
         {
-           // //if ()
-           // {
-           //     if (!_collisions.Contains(collision.collider))
-           //     {
-           //         _collisions.Add(collision.collider);
-           //     }
-           // }
-           //// else
-           // {
-           //     if (_collisions.Contains(collision.collider))
-           //     {
-           //         _collisions.Remove(collision.collider);
-           //     }
-           //     if (_collisions.Count == 0) { }
-           // }
+            if (collision.gameObject.layer == _layerMask)
+                return;
+            if (!_collisions.Contains(collision.collider))
+            {
+                _collisions.Add(collision.collider);
+                return;
+            }
+            //clear deprecated collisions
+            int counter = 0;
+            while (_collisions.Count > 0 && counter < _collisions.Count)
+            {
+                if (_collisions[counter] == collision.collider)
+                {
+                    counter++;
+                }
+                else
+                {
+                    _collisions.RemoveAt(counter);
+                }
+            }
         }
 
         private void OnCollisionExit(Collision collision)
         {
+            if (collision.gameObject.layer == _layerMask)
+                return;
             if (_collisions.Contains(collision.collider))
             {
                 _collisions.Remove(collision.collider);
@@ -89,11 +103,23 @@ namespace Core.Player
             if (_collisions.Count == 0) { }
         }
 
+        private List<Collider> CheckCollisionsInSphere(out int count)
+        {
+            Collider[] results = new Collider[10];
+            count = Physics.OverlapSphereNonAlloc(transform.position, _capsuleCollider.height, results);
+            return new List<Collider>(results);
+        }
+
         private void ProcessCollisions()
         {
-            foreach (var collision in _collisions)
+            List<Collider> results = CheckCollisionsInSphere(out int counter);
+            if (counter > 0)
             {
-                ActivateInteractable(collision.gameObject);
+                foreach (var collision in _collisions)
+                {
+                    if (results.Contains(collision))
+                        ActivateInteractable(collision.gameObject);
+                }
             }
         }
 
