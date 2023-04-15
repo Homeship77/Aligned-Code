@@ -21,9 +21,8 @@ namespace Core.Player
         [SerializeField]
         private Transform _levelBase;
 
-        private LayerMask _layerMask;
-
-        private List<Collider> _collisions = new List<Collider>();
+        [SerializeField]
+        private LayerMask _interactableLayerMask;
 
         private PlayerSessionData _sessionData;
         private PoolService _effectService;
@@ -40,7 +39,6 @@ namespace Core.Player
             Vector2 levelSize = new Vector2(_levelBase.localScale.x * 5, _levelBase.localScale.z * 5) * 0.9f;
             _levelProcessor = new LevelGenerator(_levelBase, _maxTakeable, _maxTreates, levelSize, _store);
             _capsuleCollider = GetComponent<CapsuleCollider>();
-            _layerMask = _levelBase.gameObject.layer;
             EventManager.Subscribe(this);
         }
 
@@ -50,76 +48,28 @@ namespace Core.Player
             _sessionData.UpdatePosition(transform.position);
             _effectService.OnUpdate();
             _levelProcessor.OnUpdate(Time.deltaTime, _sessionData.PlayerPosition);
+        }
+
+        private void FixedUpdate()
+        {
             ProcessCollisions();
-            _coolDownTimer -= Time.deltaTime;
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.layer == _layerMask)
-                return;
-            ContactPoint[] contactPoints = collision.contacts;
-            for (int i = 0; i < contactPoints.Length; i++)
-            {
-                if (!_collisions.Contains(collision.collider))
-                {
-                    _collisions.Add(collision.collider);
-                }
-            }
-        }
-
-        private void OnCollisionStay(Collision collision)
-        {
-            if (collision.gameObject.layer == _layerMask)
-                return;
-            if (!_collisions.Contains(collision.collider))
-            {
-                _collisions.Add(collision.collider);
-                return;
-            }
-            //clear deprecated collisions
-            int counter = 0;
-            while (_collisions.Count > 0 && counter < _collisions.Count)
-            {
-                if (_collisions[counter] == collision.collider)
-                {
-                    counter++;
-                }
-                else
-                {
-                    _collisions.RemoveAt(counter);
-                }
-            }
-        }
-
-        private void OnCollisionExit(Collision collision)
-        {
-            if (collision.gameObject.layer == _layerMask)
-                return;
-            if (_collisions.Contains(collision.collider))
-            {
-                _collisions.Remove(collision.collider);
-            }
-            if (_collisions.Count == 0) { }
+            _coolDownTimer -= Time.fixedDeltaTime;
         }
 
         private List<Collider> CheckCollisionsInSphere(out int count)
         {
             Collider[] results = new Collider[10];
-            count = Physics.OverlapSphereNonAlloc(transform.position, _capsuleCollider.height, results);
+            count = Physics.OverlapSphereNonAlloc(transform.position, _capsuleCollider.height * 0.5f, results, _interactableLayerMask);
             return new List<Collider>(results);
         }
 
         private void ProcessCollisions()
         {
             List<Collider> results = CheckCollisionsInSphere(out int counter);
-            if (counter > 0)
+            for (int i = 0; i< counter; i++)
             {
-                foreach (var collision in _collisions)
-                {
-                    if (results.Contains(collision))
-                        ActivateInteractable(collision.gameObject);
-                }
+                var collision = results[i];
+                ActivateInteractable(collision.gameObject);
             }
         }
 
@@ -132,7 +82,6 @@ namespace Core.Player
                 return;
             
             itemComponent.Action(_sessionData);
-            
         }
 
         public void ProcessEvent(EInteractableType eventType, int value)
@@ -196,19 +145,7 @@ namespace Core.Player
 
         public void ObjectReturningToPool(Vector3 objPosition)
         {
-            int counter = 0;
-            while (_collisions.Count > 0 && counter < _collisions.Count) 
-            { 
-                if (_collisions[counter].gameObject.activeInHierarchy)
-                {
-                    counter++;
-                }
-                else
-                {
-                    _collisions.RemoveAt(counter);
-                    return;
-                }
-            }
+            //
         }
     } 
 }

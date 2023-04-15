@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5071759594008156581}
   - component: {fileID: 2838857960212698617}
   - component: {fileID: 5541596986552113425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4806,7 +4806,7 @@ GameObject:
   - component: {fileID: 7335756126519953770}
   - component: {fileID: 2727046242660929412}
   - component: {fileID: 8692600238942667515}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ExplosionMobile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4843,8 +4843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac1691131a8c844dafe8b6ace6a172a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 2
-  explosionRadius: 4
+  explosionForce: 4
+  explosionRadius: 8
   _collisionMask:
     serializedVersion: 2
     m_Bits: 8
@@ -4872,7 +4872,7 @@ GameObject:
   - component: {fileID: 5462256116000565141}
   - component: {fileID: 7356130359113713119}
   - component: {fileID: 8448692438116802495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9564,7 +9564,7 @@ GameObject:
   - component: {fileID: 3614415546639177202}
   - component: {fileID: 7823894505815574312}
   - component: {fileID: 6829655102329793870}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TrailsWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14369,7 +14369,7 @@ GameObject:
   - component: {fileID: 7926572320338520863}
   - component: {fileID: 6002995180961781928}
   - component: {fileID: 4453938482422392198}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19219,7 +19219,7 @@ GameObject:
   - component: {fileID: 8621429398205176014}
   - component: {fileID: 8621429398205145454}
   - component: {fileID: 8621429398230463564}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23951,7 +23951,7 @@ GameObject:
   - component: {fileID: 8621429398783526160}
   - component: {fileID: 8621429398801875026}
   - component: {fileID: 8621429398801988082}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28692,7 +28692,7 @@ GameObject:
   - component: {fileID: 8621429398776704210}
   - component: {fileID: 8621429398801988086}
   - component: {fileID: 8621429398801875030}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireMobile
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -33537,7 +33537,7 @@ GameObject:
   - component: {fileID: 6169132467882358035}
   - component: {fileID: 1200079175608954274}
   - component: {fileID: 5559536784741823178}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: geyzer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

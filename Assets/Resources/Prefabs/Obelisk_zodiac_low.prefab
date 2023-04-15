@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2585472310828461996}
   - component: {fileID: 1501388207537463660}
   - component: {fileID: 5507060317580405780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Obelisk_zodiac_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 5726503687065911438}
   - component: {fileID: 8148963676052097846}
   - component: {fileID: 5112010238259952585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: obelisk_plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 2081611852522835373}
   - component: {fileID: 4462991082298153591}
   - component: {fileID: 7137625491148539553}
+  - component: {fileID: 3150657905267000826}
   m_Layer: 0
   m_Name: obelisk_main
   m_TagString: Untagged
@@ -247,3 +248,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3150657905267000826
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759370352651311727}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.3397512, y: 14.345584, z: 3.3397512}
+  m_Center: {x: 0, y: 6.190944, z: 0}
