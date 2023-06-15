@@ -9,11 +9,9 @@ namespace Core.Interactables
     public class InteractableBase : AInteractableItem
     {
         [SerializeField]
+        private GameSettings _settings;
+        [SerializeField]
         private Transform _lowUprgadeTarget;
-        [SerializeField]
-        private int _coinsToLowUpgrade = 5;
-        [SerializeField]
-        private int _coinsToHighUpgrade = 25;
         [SerializeField]
         private GameObject _highGradePrefab;
         [SerializeField]
@@ -43,12 +41,12 @@ namespace Core.Interactables
             EventManager.RaiseEvent<IGameEvent>(handler => handler.ProcessEvent(InteractableType, -value));
             _coinsSpended += value;
 
-            var lowUpgr = _coinsSpended / _coinsToLowUpgrade;
+            var lowUpgr = _coinsSpended / _settings.CoinsToLowUpgrade;
             for (int i = 0; i < (lowUpgr - _lowUpgrades); i++) 
             {
                 LowUpgrade();
             }
-            var highUpgr = _coinsSpended / _coinsToHighUpgrade;
+            var highUpgr = _coinsSpended / _settings.CoinsToHighUpgrade;
             for (int i = 0; i < (highUpgr - _highUpgrades); i++)
             {
                 HighUpgrade();

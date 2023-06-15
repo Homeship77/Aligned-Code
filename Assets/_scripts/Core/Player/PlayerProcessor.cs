@@ -10,14 +10,9 @@ namespace Core.Player
     public class PlayerProcessor : MonoBehaviour, IGameEvent
     {
         [SerializeField]
-        private int _startHealth = 5;
-        [SerializeField]
-        private int _maxTakeable = 35;
-        [SerializeField]
-        private int _maxTreates = 25;
-
-        [SerializeField]
         private GameObjectStore _store;
+        [SerializeField]
+        private GameSettings _settings;
         [SerializeField]
         private Transform _levelBase;
 
@@ -34,10 +29,10 @@ namespace Core.Player
         // Start is called before the first frame update
         private void Start()
         {
-            _sessionData = new PlayerSessionData(_startHealth);
+            _sessionData = new PlayerSessionData(_settings.StartHealth);
             _effectService = new PoolService(_store, null);
             Vector2 levelSize = new Vector2(_levelBase.localScale.x * 5, _levelBase.localScale.z * 5) * 0.9f;
-            _levelProcessor = new LevelGenerator(_levelBase, _maxTakeable, _maxTreates, levelSize, _store);
+            _levelProcessor = new LevelGenerator(_levelBase, _settings.MaxTakeable, _settings.MaxTreates, levelSize, _store);
             _capsuleCollider = GetComponent<CapsuleCollider>();
             EventManager.Subscribe(this);
         }
@@ -134,7 +129,7 @@ namespace Core.Player
                     this.enabled = false;
                     break;
                 case EEventType.eet_respawn:
-                    _sessionData.SetHealthValue(_startHealth);
+                    _sessionData.SetHealthValue(_settings.StartHealth);
                     EventManager.RaiseEvent<IUIEvent>(handler => handler.CriticalUIEvent(EEventType.eet_respawn));
                     EventManager.RaiseEvent<IUIEvent>(handler => handler.ProcessUIEvent(EInteractableType.eit_health, _sessionData.Health));
                     this.enabled = true;
