@@ -16,22 +16,27 @@ MonoBehaviour:
   - ID: coin
     Prefab: {fileID: 1000011365394840, guid: 5142a683d65bbf84abea6f07db9099c7, type: 3}
     PoolCount: 50
-    SingleInstance: 0
-    Takeable: 1
+    ItemType: 1
+    Weight: 3
+  - ID: mana
+    Prefab: {fileID: 1000013317980782, guid: 2cf6690298568294cb6b655c0a3aeb87, type: 3}
+    PoolCount: 50
+    ItemType: 1
+    Weight: 2
   - ID: heal
     Prefab: {fileID: 1000012970591572, guid: 7cafb89b5a0f61f479d0a748962abbbc, type: 3}
     PoolCount: 50
-    SingleInstance: 0
-    Takeable: 1
+    ItemType: 1
+    Weight: 2
   - ID: geyzer
     Prefab: {fileID: 8621429400075628953, guid: 21741115f99528548b7dc302d8916243,
       type: 3}
     PoolCount: 35
-    SingleInstance: 0
-    Takeable: 0
+    ItemType: 2
+    Weight: 1
   - ID: base
     Prefab: {fileID: 2930332572023633174, guid: 4f968a21f13aee94997cb7cc1a159a0a,
       type: 3}
     PoolCount: 1
-    SingleInstance: 1
-    Takeable: 0
+    ItemType: 3
+    Weight: 0

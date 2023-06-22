@@ -1,0 +1,431 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4215d9e6014f44b48aa13727626512dd, type: 3}
+  m_Name: GameSpellsStore
+  m_EditorClassIdentifier: 
+  _spells:
+  - _nameKey: Fire spells
+    _icon: {fileID: 21300000, guid: 5e59ddab90a277444a5153c7619281ee, type: 3}
+    _position: {x: 1, y: 0}
+    Spell:
+      SpellClass: 1
+      Type: 0
+      SpellID: 0
+      NeedClassLevel: 0
+      Power: 0
+      Range: 0
+      CoolDownTime: 0
+      Cost: 0
+      ActivityTime: 0
+      ShotSpeed: 0
+      SpellViewPrefabID: 
+    ChildNodes:
+    - _nameKey: Fireball
+      _icon: {fileID: 21300000, guid: e00f37b58fb47014d8235aea3dcbd6da, type: 3}
+      _position: {x: 0, y: 1}
+      Spell:
+        SpellClass: 1
+        Type: 1
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes:
+      - _nameKey: Firebreath
+        _icon: {fileID: 21300000, guid: e00f37b58fb47014d8235aea3dcbd6da, type: 3}
+        _position: {x: 1, y: 0}
+        Spell:
+          SpellClass: 1
+          Type: 1
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+      - _nameKey: Firebeam
+        _icon: {fileID: 21300000, guid: 0c47a64c3ab6f724d9acf4cfc4eb7c48, type: 3}
+        _position: {x: 0, y: 1}
+        Spell:
+          SpellClass: 1
+          Type: 1
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+    - _nameKey: Firehand
+      _icon: {fileID: 21300000, guid: 471282064632a46409c477f21a541ecc, type: 3}
+      _position: {x: 0, y: -1}
+      Spell:
+        SpellClass: 1
+        Type: 1
+        SpellID: 1
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes:
+      - _nameKey: Fire resistance
+        _icon: {fileID: 21300000, guid: 4f684a5246c4ff7488da983f95d57e8d, type: 3}
+        _position: {x: 1, y: 0}
+        Spell:
+          SpellClass: 1
+          Type: 3
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+  - _nameKey: Ice spells
+    _icon: {fileID: 21300000, guid: 543874d33f8734a4b911bb1d2728039a, type: 3}
+    _position: {x: -1, y: 0}
+    Spell:
+      SpellClass: 2
+      Type: 0
+      SpellID: 0
+      NeedClassLevel: 0
+      Power: 0
+      Range: 0
+      CoolDownTime: 0
+      Cost: 0
+      ActivityTime: 0
+      ShotSpeed: 0
+      SpellViewPrefabID: 
+    ChildNodes:
+    - _nameKey: Ice bolt
+      _icon: {fileID: 21300000, guid: 0df18127214e68b468d8183df1d8e7f3, type: 3}
+      _position: {x: 0, y: 1}
+      Spell:
+        SpellClass: 2
+        Type: 1
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes: []
+    - _nameKey: Ice hand
+      _icon: {fileID: 21300000, guid: 593efc45adec24e45ac999b3b29b1b35, type: 3}
+      _position: {x: 0, y: -1}
+      Spell:
+        SpellClass: 2
+        Type: 1
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes:
+      - _nameKey: Ice shield
+        _icon: {fileID: 21300000, guid: 68b3c1eba9e64f14484a27fee5f56a18, type: 3}
+        _position: {x: -1, y: 0}
+        Spell:
+          SpellClass: 2
+          Type: 2
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+      - _nameKey: Ice resistance
+        _icon: {fileID: 21300000, guid: e3049fac512c6584db0bfd554bfb6df1, type: 3}
+        _position: {x: 0, y: -1}
+        Spell:
+          SpellClass: 2
+          Type: 3
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+    - _nameKey: IceBreath
+      _icon: {fileID: 21300000, guid: 5cf3ce1561327b44b83ce4b6d7724e2d, type: 3}
+      _position: {x: -1, y: 0}
+      Spell:
+        SpellClass: 2
+        Type: 1
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes:
+      - _nameKey: IceLock
+        _icon: {fileID: 21300000, guid: 7761c51e77491e14681d815de183a89d, type: 3}
+        _position: {x: 0, y: 1}
+        Spell:
+          SpellClass: 2
+          Type: 4
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+  - _nameKey: Lightning spells
+    _icon: {fileID: 21300000, guid: 20416cec0a7961f45a355ce210fd844c, type: 3}
+    _position: {x: 0, y: 1}
+    Spell:
+      SpellClass: 3
+      Type: 0
+      SpellID: 0
+      NeedClassLevel: 0
+      Power: 0
+      Range: 0
+      CoolDownTime: 0
+      Cost: 0
+      ActivityTime: 0
+      ShotSpeed: 0
+      SpellViewPrefabID: 
+    ChildNodes:
+    - _nameKey: LightningBolt
+      _icon: {fileID: 21300000, guid: e5698b4b72e13304ca2ad4c758c0adfa, type: 3}
+      _position: {x: 1, y: 0}
+      Spell:
+        SpellClass: 3
+        Type: 1
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes: []
+    - _nameKey: Light
+      _icon: {fileID: 21300000, guid: ebeb29065c61e0947b70b7dd14db3a20, type: 3}
+      _position: {x: -1, y: 0}
+      Spell:
+        SpellClass: 3
+        Type: 3
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes: []
+    - _nameKey: Lightning resistance
+      _icon: {fileID: 21300000, guid: 2aad171c33d1f3e49a7504102881a7a5, type: 3}
+      _position: {x: 0, y: 1}
+      Spell:
+        SpellClass: 3
+        Type: 3
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes: []
+  - _nameKey: Mental spells
+    _icon: {fileID: 21300000, guid: 2f7f049aef6a6f2408f92a36e7161ab8, type: 3}
+    _position: {x: 0, y: -1}
+    Spell:
+      SpellClass: 4
+      Type: 0
+      SpellID: 0
+      NeedClassLevel: 0
+      Power: 0
+      Range: 0
+      CoolDownTime: 0
+      Cost: 0
+      ActivityTime: 0
+      ShotSpeed: 0
+      SpellViewPrefabID: 
+    ChildNodes:
+    - _nameKey: Kinatic push
+      _icon: {fileID: 21300000, guid: 164669bf1374a114a8efa8a725196afc, type: 3}
+      _position: {x: 1, y: 0}
+      Spell:
+        SpellClass: 4
+        Type: 1
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes:
+      - _nameKey: Kinetik move
+        _icon: {fileID: 21300000, guid: c716b58e13302034296e5fbd3c14869d, type: 3}
+        _position: {x: -1, y: 0}
+        Spell:
+          SpellClass: 4
+          Type: 1
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+      - _nameKey: Kinetic wave
+        _icon: {fileID: 21300000, guid: 9fa1333ff6dfec341bc7bed0b7914ff5, type: 3}
+        _position: {x: 0, y: -1}
+        Spell:
+          SpellClass: 4
+          Type: 1
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+    - _nameKey: Mental shield
+      _icon: {fileID: 21300000, guid: 5897ca97ca757294590e41b361d2b21a, type: 3}
+      _position: {x: -1, y: 0}
+      Spell:
+        SpellClass: 4
+        Type: 2
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes:
+      - _nameKey: Mental resistance
+        _icon: {fileID: 21300000, guid: fe7ef351c675de04c817d3b46654dbae, type: 3}
+        _position: {x: 0, y: 1}
+        Spell:
+          SpellClass: 4
+          Type: 3
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+    - _nameKey: BioMagic
+      _icon: {fileID: 21300000, guid: 35fd892e3b9037b40b8dd5db2abb9904, type: 3}
+      _position: {x: 0, y: -1}
+      Spell:
+        SpellClass: 4
+        Type: 0
+        SpellID: 0
+        NeedClassLevel: 0
+        Power: 0
+        Range: 0
+        CoolDownTime: 0
+        Cost: 0
+        ActivityTime: 0
+        ShotSpeed: 0
+        SpellViewPrefabID: 
+      ChildNodes:
+      - _nameKey: Healing
+        _icon: {fileID: 21300000, guid: afeb4864ed79c8e44bf5ea797e0dc913, type: 3}
+        _position: {x: 0, y: -1}
+        Spell:
+          SpellClass: 4
+          Type: 3
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []
+      - _nameKey: TrueVision
+        _icon: {fileID: 21300000, guid: e89adacdf519b8e4193bfdb2d460b60a, type: 3}
+        _position: {x: -1, y: 0}
+        Spell:
+          SpellClass: 4
+          Type: 3
+          SpellID: 0
+          NeedClassLevel: 0
+          Power: 0
+          Range: 0
+          CoolDownTime: 0
+          Cost: 0
+          ActivityTime: 0
+          ShotSpeed: 0
+          SpellViewPrefabID: 
+        ChildNodes: []

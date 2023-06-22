@@ -1,5 +1,4 @@
-﻿using Core.Effects;
-using Core.Player;
+﻿using Core.Player;
 using EventSystems;
 using Interfaces;
 using UnityEngine;
@@ -15,7 +14,7 @@ namespace Core.Interactables
         [SerializeField]
         private GameObject _highGradePrefab;
         [SerializeField]
-        private string _spetCoinsEffect;
+        private string _spentCoinsEffect;
 
         private int _lowUpgrades = 0;
         private int _highUpgrades = 0;
@@ -26,7 +25,7 @@ namespace Core.Interactables
         public override void Action(PlayerSessionData sessionData)
         {
             var playerCoins = sessionData.Coins;
-            EventManager.RaiseEvent<IGameEffectEvent>(handler => handler.AddEffect(_spetCoinsEffect, transform.position, sessionData.PlayerPosition, () => { SpentCoins(playerCoins); }));
+            EventManager.RaiseEvent<IGameEffectEvent>(handler => handler.AddEffect(_spentCoinsEffect, transform.position, sessionData.PlayerPosition, out go, () => { SpentCoins(playerCoins); }));
         }
 
         public override void OnStart()

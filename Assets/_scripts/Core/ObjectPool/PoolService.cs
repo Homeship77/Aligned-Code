@@ -26,14 +26,15 @@ namespace Core.ObjectPool
         private List<SActiveObject> _activeObjects;
         private Transform _parent;
 
-        public void AddEffect(string effectID, Vector3 startPos, Vector3 endPos, Action callback = null)
+        public void AddEffect(string effectID, Vector3 startPos, Vector3 endPos, out GameObject go, Action callback = null)
         {
+            go = null;
             if (_pool.TryGetValue(effectID, out var value))
             {
                 if (value.Count > 0) 
                 {
                     _activeObjects.Add(new SActiveObject(value[0], effectID));
-                    var go = value[0];
+                    go = value[0];
                     value.RemoveAt(0);
 
                     if (_parent != null)
@@ -55,7 +56,7 @@ namespace Core.ObjectPool
                 }
                 else // not enough objects in pool
                 {
-
+                    
                 }
             }
             else

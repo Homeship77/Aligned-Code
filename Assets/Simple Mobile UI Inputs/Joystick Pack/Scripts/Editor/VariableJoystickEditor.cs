@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEditor;
+using Core.UI;
 
 [CustomEditor(typeof(VariableJoystick))]
 public class VariableJoystickEditor : JoystickEditor

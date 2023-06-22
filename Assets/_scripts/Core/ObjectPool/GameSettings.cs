@@ -6,6 +6,7 @@ namespace Core.Player
     public class GameSettings : ScriptableObject
     {
         public int StartHealth = 5;
+        public int StartMana = 5;
         public int MaxTakeable = 35;
         public int MaxTreates = 25;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Core.UI;
 
 [CustomEditor(typeof(DynamicJoystick))]
 public class DynamicJoystickEditor : JoystickEditor

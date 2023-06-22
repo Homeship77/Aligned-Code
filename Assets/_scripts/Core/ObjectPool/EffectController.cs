@@ -5,8 +5,6 @@ namespace Core.ObjectPool
 {
     public class EffectController: MonoBehaviour
     {
-
-
         private Vector3 _position;
         private Action _action;
 

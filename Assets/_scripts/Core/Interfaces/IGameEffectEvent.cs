@@ -6,7 +6,7 @@ namespace Interfaces
 {
     public interface IGameEffectEvent: IGlobalSubscriber
     {
-        void AddEffect(string effectID, Vector3 startPos, Vector3 endPos, Action callback = null);
+        void AddEffect(string effectID, Vector3 startPos, Vector3 endPos, out GameObject result, Action callback = null);
 
         event Action<float> OnUpdateEvent;
     }

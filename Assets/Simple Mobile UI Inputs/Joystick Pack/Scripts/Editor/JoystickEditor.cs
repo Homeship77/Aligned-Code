@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
+using Core.UI;
 
 [CustomEditor(typeof(Joystick), true)]
 public class JoystickEditor : Editor
@@ -11,6 +10,7 @@ public class JoystickEditor : Editor
     private SerializedProperty axisOptions;
     private SerializedProperty snapX;
     private SerializedProperty snapY;
+    private SerializedProperty _useTouchNumber;
     protected SerializedProperty background;
     private SerializedProperty handle;
 
@@ -23,6 +23,7 @@ public class JoystickEditor : Editor
         axisOptions = serializedObject.FindProperty("axisOptions");
         snapX = serializedObject.FindProperty("snapX");
         snapY = serializedObject.FindProperty("snapY");
+        _useTouchNumber = serializedObject.FindProperty("_useTouchNumber");
         background = serializedObject.FindProperty("background");
         handle = serializedObject.FindProperty("handle");
     }
@@ -54,6 +55,7 @@ public class JoystickEditor : Editor
         EditorGUILayout.PropertyField(axisOptions, new GUIContent("Axis Options", "Which axes the joystick uses."));
         EditorGUILayout.PropertyField(snapX, new GUIContent("Snap X", "Snap the horizontal input to a whole value."));
         EditorGUILayout.PropertyField(snapY, new GUIContent("Snap Y", "Snap the vertical input to a whole value."));
+        EditorGUILayout.PropertyField(_useTouchNumber, new GUIContent("Use Touch Number", "The number of touch used for UI element activation."));
     }
 
     protected virtual void DrawComponents()

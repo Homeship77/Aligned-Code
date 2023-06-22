@@ -7,6 +7,7 @@ namespace Core
 {
     public abstract class AInteractableItem : MonoBehaviour, IGameInteractable
     {
+        protected GameObject go;
         public abstract EInteractableType InteractableType { get; }
 
         void Start()

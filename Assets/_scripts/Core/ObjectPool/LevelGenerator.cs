@@ -1,5 +1,8 @@
-﻿using EventSystems;
+﻿using Core.Enemies;
+using Core.SpellSystem;
+using EventSystems;
 using Interfaces;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,10 +21,11 @@ namespace Core.ObjectPool
         private Vector2 _spawnedZoneSize = Vector2.zero;
         private int _maxTreatable;
         private int _maxTakeable;
-        private string[] _takeableIDs;
-        private string[] _treatableIDs;
         private string[] _uniqueIDs;
         private GameObjectStore _store;
+
+        private ItemWeightedRandomSelector _takeableSelector;
+        private ItemWeightedRandomSelector _treatableSelector;
 
         private const float FREE_ZONE = 3f;
         private const float SPAWN_PERIOD = 5f;
@@ -37,9 +41,12 @@ namespace Core.ObjectPool
             _maxTakeable = maxTakeable;
             _maxTreatable = maxTreatable;
             _store = store;
-            _takeableIDs = store.GetItemsIDs(1);
-            _treatableIDs = store.GetItemsIDs(2);
-            _uniqueIDs = store.GetItemsIDs(3);
+            
+            _takeableSelector = new ItemWeightedRandomSelector(store, EItemFilterType.eift_takeable);
+            _treatableSelector = new ItemWeightedRandomSelector(store, EItemFilterType.eift_treatable);
+
+            _uniqueIDs = store.GetFilteredItemsIDs(EItemFilterType.eift_unique);
+
             LevelInit();
         }
 
@@ -57,7 +64,7 @@ namespace Core.ObjectPool
 
             for(int i = 0; i < _maxTakeable; i++)
             {
-                var name = _takeableIDs[Random.Range(0, _takeableIDs.Length)];
+                var name = _takeableSelector.GetRandomItem().ID;
                 var pos = SpawnObjectRandomly(name);
                 if (!pos.Equals(Vector3.zero))
                     _spawnedTakeable.Add(pos);
@@ -65,7 +72,7 @@ namespace Core.ObjectPool
 
             for (int i = 0; i < _maxTreatable; i++)
             {
-                var name = _treatableIDs[Random.Range(0, _treatableIDs.Length)];
+                var name = _treatableSelector.GetRandomItem().ID;
                 var pos = SpawnObjectRandomly(name);
                 if (!pos.Equals(Vector3.zero))
                     _spawnedTreatable.Add(pos);
@@ -103,6 +110,8 @@ namespace Core.ObjectPool
             return true;
         }
 
+        private GameObject go;
+
         private Vector3 SpawnObjectRandomly(string TakeEffectID)
         {
             Vector3 newPos = _playerPos;
@@ -110,13 +119,13 @@ namespace Core.ObjectPool
             bool checkedPos = CheckPosition(newPos);
             while (!checkedPos && SPAWN_ATTEMPS > counter)
             {
-                newPos = new Vector3(Random.Range(-_spawnedZoneSize.x, _spawnedZoneSize.x), _levelParent.position.y, Random.Range(-_spawnedZoneSize.y, _spawnedZoneSize.y));
+                newPos = new Vector3(UnityEngine.Random.Range(-_spawnedZoneSize.x, _spawnedZoneSize.x), _levelParent.position.y, UnityEngine.Random.Range(-_spawnedZoneSize.y, _spawnedZoneSize.y));
                 checkedPos = CheckPosition(newPos);
                 counter++;  
             }
             if (SPAWN_ATTEMPS > counter)
             {
-                EventManager.RaiseEvent<IGameEffectEvent>(handler => handler.AddEffect(TakeEffectID, newPos, _playerPos, null));
+                EventManager.RaiseEvent<IGameEffectEvent>(handler => handler.AddEffect(TakeEffectID, newPos, _playerPos, out go, null));
                 return newPos;
             }
             return Vector3.zero;
@@ -136,7 +145,7 @@ namespace Core.ObjectPool
                 _lastSpawnTimer = 0f;
                 for (int i = 0; i < (_maxTreatable - _spawnedTreatable.Count) / 2; i++ )
                 {
-                    var name = _treatableIDs[Random.Range(0, _treatableIDs.Length)];
+                    var name = _treatableSelector.GetRandomItem().ID;
                     var pos = SpawnObjectRandomly(name);
                     if (!pos.Equals(Vector3.zero))
                         _spawnedTreatable.Add(pos);
@@ -152,18 +161,26 @@ namespace Core.ObjectPool
                     break;
                 case EInteractableType.eit_base:
                     break;
+
                 case EInteractableType.eit_health:
-                    var name = _takeableIDs[Random.Range(0, _takeableIDs.Length)];
+                    var name = _takeableSelector.GetRandomItem().ID;
                     var pos = SpawnObjectRandomly(name);
                     if (!pos.Equals(Vector3.zero))
                         _spawnedTakeable.Add(pos);
                     break;
                 case EInteractableType.eit_coin:
-                    var ids = _takeableIDs[Random.Range(0, _takeableIDs.Length)];
+                    var ids = _takeableSelector.GetRandomItem().ID;
                     var pos1 = SpawnObjectRandomly(ids);
                     if (!pos1.Equals(Vector3.zero))
                         _spawnedTakeable.Add(pos1);
                     break;
+                case EInteractableType.eit_mana:
+                    var ids1 = _takeableSelector.GetRandomItem().ID;
+                    var pos2 = SpawnObjectRandomly(ids1);
+                    if (!pos2.Equals(Vector3.zero))
+                        _spawnedTakeable.Add(pos2);
+                    break;
+
                 case EInteractableType.eit_upgrade:
                    //some feature spawned
                     break;
@@ -221,6 +238,16 @@ namespace Core.ObjectPool
                     return;
                 }
             }
+        }
+
+        public void CriticalEnemyEvent(EEnemyEventType eventType, EnemyView enemy)
+        {
+            //
+        }
+
+        public void StartSpellEvent(SpellNode data, Vector3 target, Action<Vector3, Vector3> callback)
+        {
+            //
         }
     }
 }

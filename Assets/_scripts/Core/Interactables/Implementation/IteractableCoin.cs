@@ -1,6 +1,7 @@
 ﻿using Core.Player;
 using EventSystems;
 using Interfaces;
+using UnityEngine;
 
 namespace Core.Interactables
 {
@@ -12,7 +13,7 @@ namespace Core.Interactables
 
         public override void Action(PlayerSessionData sessionData)
         {
-            EventManager.RaiseEvent<IGameEffectEvent>(handler => handler.AddEffect( TakeEffectID, transform.position, sessionData.PlayerPosition, ()=> { EventManager.RaiseEvent<IGameEvent>(handler => handler.ProcessEvent(InteractableType, 1)); }));
+            EventManager.RaiseEvent<IGameEffectEvent>(handler => handler.AddEffect( TakeEffectID, transform.position, sessionData.PlayerPosition, out go, ()=> { EventManager.RaiseEvent<IGameEvent>(handler => handler.ProcessEvent(InteractableType, 1)); }));
             gameObject.SetActive(false);
         }
     }

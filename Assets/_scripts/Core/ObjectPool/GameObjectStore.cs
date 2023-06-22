@@ -10,8 +10,18 @@ namespace Core.ObjectPool
         public string ID;
         public GameObject Prefab;
         public int PoolCount;
-        public bool SingleInstance;
-        public bool Takeable;
+        public EItemFilterType ItemType;
+        public int Weight;
+    }
+
+    [Serializable]
+    public enum EItemFilterType
+    {
+        eift_all = 0,
+        eift_takeable = 1,
+        eift_treatable = 2,
+        eift_unique = 3,
+        eift_effect = 4,
     }
 
     [CreateAssetMenu(fileName = "GameObjectStore", menuName = "Game/Game Object Store", order = 0)]
@@ -36,30 +46,28 @@ namespace Core.ObjectPool
             return new GameObjectItem();
         }
 
-        public string[] GetItemsIDs(int filter = 0)
+        public List<GameObjectItem> GetFiltererdItems(EItemFilterType filter = EItemFilterType.eift_all)
+        {
+            List<GameObjectItem> res = new List<GameObjectItem>();
+            for (int i = 0; i < ItemListData.Count; i++)
+            {
+                if (filter == EItemFilterType.eift_all || ItemListData[i].ItemType == filter)
+                {
+                    res.Add(ItemListData[i]);
+                }
+            }
+            return res;
+        }
+
+        public string[] GetFilteredItemsIDs(EItemFilterType filter = EItemFilterType.eift_all)
         {
             List<string> res = new List<string>();
             for(int i =0; i< ItemListData.Count; i++)
             {
-                switch(filter)
+                if (filter == EItemFilterType.eift_all || ItemListData[i].ItemType == filter)
                 {
-                    case 0:
-                        res.Add(ItemListData[i].ID);
-                        break;
-                    case 1: // takeable
-                        if (ItemListData[i].Takeable && !ItemListData[i].SingleInstance)
-                            res.Add(ItemListData[i].ID);
-                        break; 
-                    case 2://treatable
-                        if (!ItemListData[i].Takeable && !ItemListData[i].SingleInstance)
-                            res.Add(ItemListData[i].ID);
-                        break;
-                    case 3: //unique objects
-                        if (ItemListData[i].SingleInstance)
-                            res.Add(ItemListData[i].ID);
-                        break;
+                    res.Add(ItemListData[i].ID);
                 }
-                
             }
             return res.ToArray();
         }
